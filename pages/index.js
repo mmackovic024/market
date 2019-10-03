@@ -1,6 +1,5 @@
 import React from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
 
 const Home = () => (
   <>
@@ -13,7 +12,10 @@ const Home = () => (
       <div className="hero">
         <h1>Market</h1>
         <p>
-          by <a href="https://github.com/mmackovic024">https://github.com/mmackovic024</a>
+          by{' '}
+          <a href="https://github.com/mmackovic024" target="_blank" rel="noopener, nporeferrer">
+            https://github.com/mmackovic024
+          </a>
         </p>
       </div>
 
