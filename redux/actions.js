@@ -2,49 +2,44 @@ import { PRODUCT_SAVE, PRODUCT_SUCCESS, CATEGORIES_SUCCESS } from './types';
 
 let products = [
   {
-    name: 'Hleb',
-    type: 'Hrana',
-    price: '100',
-    description: 'Njam njam'
+    name: 'Suboticki beli',
+    type: 'Hleb',
+    price: '40',
+    description: 'Za jelo',
+    category: '0'
   },
   {
-    name: 'Voda',
-    type: 'Pice',
-    price: '50',
-    description: 'Glu glu'
+    name: 'Rosa',
+    type: 'Voda',
+    price: '30',
+    description: 'Za pice',
+    category: '1'
+  },
+  {
+    name: 'Tide',
+    type: 'Deterdzent',
+    price: '500',
+    description: 'Za pranje',
+    category: '2'
   }
 ];
 
-let categories = [
-  {
-    id: 1,
-    name: 'Hrana'
-  },
-  {
-    id: 2,
-    name: 'Pice'
-  },
-  {
-    id: 3,
-    name: 'Hemija'
-  },
-  {
-    id: 4,
-    name: 'Tehnika'
-  }
-];
+let categories = ['hrana', 'pice', 'hemija', 'tehnika'];
 
-export const getProducts = () => dispatch =>
+export const getProducts = () => dispatch => {
+  const prod = products.map(pr => ({ ...pr, category: categories[+pr.category] }));
   dispatch({
     type: PRODUCT_SUCCESS,
-    products
+    products: prod
   });
+};
 
 export const saveProduct = product => dispatch => {
   products.push(product);
+  const prod = products.map(pr => ({ ...pr, category: categories[+pr.category] }));
   return dispatch({
     type: PRODUCT_SAVE,
-    products
+    products: prod
   });
 };
 

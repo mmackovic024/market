@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getProducts } from '../redux/actions';
+import { getProducts, getCategories } from '../redux/actions';
 import Products from '../components/Products';
 import Form from '../components/Form';
 
@@ -93,6 +93,7 @@ const Home = () => {
 };
 Home.getInitialProps = ({ reduxStore }) => {
   reduxStore.dispatch(getProducts());
+  reduxStore.dispatch(getCategories());
 
   return {};
 };

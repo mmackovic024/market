@@ -2,9 +2,15 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const Products = () => {
-  const { products } = useSelector(store => store);
+  const PDV = 0.2;
+  const { products, categories } = useSelector(store => store);
   const columns = Object.keys(products[0]);
-  columns.splice(columns.indexOf('price') + 1, 0, 'pricePDV');
+  const priceColumnIndex = columns.indexOf('price');
+  columns.splice(priceColumnIndex + 1, 0, 'pricePDV');
+  const rows = products.map(prod => Object.values(prod));
+  rows.forEach(row => {
+    row.splice(priceColumnIndex + 1, 0, row[priceColumnIndex] * (1 + PDV));
+  });
 
   return (
     <>
@@ -19,19 +25,21 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {products.map((prod, i) => (
+            {rows.map((row, i) => (
               <tr key={`row_${i}`}>
-                <td>{prod.name}</td>
-                <td>{prod.type}</td>
-                <td>{prod.price}</td>
-                <td>{prod.price * 1.2}</td>
-                <td>{prod.description}</td>
+                {row.map((td, i) => (
+                  <td key={`td_${i}`}>{td}</td>
+                ))}
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <style jsx>{`
+        div {
+          overflow-x: auto;
+        }
+
         h2 {
           text-align: center;
         }

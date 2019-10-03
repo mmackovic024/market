@@ -1,15 +1,17 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveProduct } from '../redux/actions';
 
 const Form = () => {
   const INITIAL_DATA = {
     name: '',
     type: '',
-    price: '',
-    description: ''
+    price: 0,
+    description: '',
+    category: '0'
   };
   const [data, setData] = React.useState(INITIAL_DATA);
+  const { categories } = useSelector(state => state);
   const dispatch = useDispatch();
 
   const handleInput = e => {
@@ -36,6 +38,14 @@ const Form = () => {
           <input type="number" name="price" value={data.price} onChange={handleInput} />
           <label htmlFor="description">Description:</label>
           <input type="text" name="description" value={data.description} onChange={handleInput} />
+          <label htmlFor="category">Category</label>
+          <select name="category" value={data.category} onChange={handleInput}>
+            {categories.map((cat, i) => (
+              <option key={`o_${i}`} value={i}>
+                {cat}
+              </option>
+            ))}
+          </select>
           <input type="submit" name="submit" value="Submit" onClick={handleSubmit} />
         </form>
       </div>
@@ -59,6 +69,10 @@ const Form = () => {
         }
 
         input {
+          margin: 0.25rem 0;
+        }
+
+        select {
           margin: 0.25rem 0;
         }
 

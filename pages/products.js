@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import Products from '../components/Products';
-import { getProducts } from '../redux/actions';
+import { getProducts, getCategories } from '../redux/actions';
 
 const ProductsPage = () => {
   return (
@@ -65,6 +65,7 @@ const ProductsPage = () => {
 
 ProductsPage.getInitialProps = ({ reduxStore }) => {
   reduxStore.dispatch(getProducts());
+  reduxStore.dispatch(getCategories());
 
   return {};
 };
