@@ -1,15 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getProducts } from '../redux/actions';
 import Products from '../components/Products';
-import Form from '../components/Form';
+import { getProducts } from '../redux/actions';
 
-const Home = () => {
+const ProductsPage = () => {
   return (
     <>
       <Head>
-        <title>Market - Home Page</title>
+        <title>Market - Products Page</title>
         <link rel="icon" href="/static/favicon.ico" importance="low" />
       </Head>
 
@@ -24,17 +23,11 @@ const Home = () => {
       </div>
 
       <div className="main">
-        <div>
-          <Form />
-        </div>
-
-        <div>
-          <Products />
-        </div>
+        <Products />
       </div>
       <div className="link">
-        <Link href="/products">
-          <a>PRODUCTS PAGE</a>
+        <Link href="/">
+          <a>HOME PAGE</a>
         </Link>
       </div>
       <style jsx>{`
@@ -57,16 +50,6 @@ const Home = () => {
           width: 80%;
           margin: 0 auto;
           padding: 0.5rem;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .main > div {
-          width: 48%;
-          height: 500px;
-          background-color: #fff;
           border: 2px solid black;
         }
 
@@ -75,26 +58,15 @@ const Home = () => {
           text-align: center;
           font-weight: 600;
         }
-
-        @media (max-width: 1000px) {
-          .main {
-            flex-direction: column;
-          }
-
-          .main > div {
-            width: 95%;
-            height: auto;
-            margin-top: 1rem;
-          }
-        }
       `}</style>
     </>
   );
 };
-Home.getInitialProps = ({ reduxStore }) => {
+
+ProductsPage.getInitialProps = ({ reduxStore }) => {
   reduxStore.dispatch(getProducts());
 
   return {};
 };
 
-export default Home;
+export default ProductsPage;
