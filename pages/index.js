@@ -61,13 +61,21 @@ const Home = () => {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
+          border: 2px solid black;
         }
 
         .main > div {
-          width: 48%;
           height: 500px;
           background-color: #fff;
-          border: 2px solid black;
+          border: 1px solid grey;
+        }
+
+        .main > div:first-child {
+          width: 34%;
+        }
+
+        .main > div:last-child {
+          width: 64%;
         }
 
         .link {
@@ -82,9 +90,16 @@ const Home = () => {
           }
 
           .main > div {
-            width: 95%;
             height: auto;
-            margin-top: 1rem;
+          }
+
+          .main > div:first-child {
+            margin-bottom: 0.5rem;
+          }
+
+          .main > div:first-child,
+          .main > div:last-child {
+            width: 100%;
           }
         }
       `}</style>
