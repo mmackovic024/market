@@ -28,6 +28,7 @@ let categories = ['hrana', 'pice', 'hemija', 'tehnika'];
 
 export const getProducts = () => dispatch => {
   const prod = products.map(pr => ({ ...pr, category: categories[+pr.category] }));
+  console.log(products);
   dispatch({
     type: PRODUCT_SUCCESS,
     products: prod
@@ -37,6 +38,7 @@ export const getProducts = () => dispatch => {
 export const saveProduct = product => dispatch => {
   products.push(product);
   const prod = products.map(pr => ({ ...pr, category: categories[+pr.category] }));
+  console.log(products);
   return dispatch({
     type: PRODUCT_SAVE,
     products: prod
