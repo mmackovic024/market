@@ -21,7 +21,7 @@ const Form = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!data.name && !data.type && !data.price && !data.category) {
+    if (!data.name || !data.type || !data.category) {
       alert('Please fill out all required fields!');
     } else if (data.price <= 0) {
       alert('Price must be above 0');
