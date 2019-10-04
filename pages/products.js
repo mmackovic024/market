@@ -1,15 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { getProducts, getCategories } from '../redux/actions';
 import Products from '../components/Products';
-import Form from '../components/Form';
+import { getProducts, getCategories } from '../redux/actions';
 
-const Home = () => {
+const ProductsPage = () => {
   return (
     <>
       <Head>
-        <title>Market - Home Page</title>
+        <title>Market - Products Page</title>
         <link rel="icon" href="/static/favicon.ico" importance="low" />
       </Head>
 
@@ -24,17 +23,11 @@ const Home = () => {
       </div>
 
       <div className="main">
-        <div>
-          <Form />
-        </div>
-
-        <div>
-          <Products />
-        </div>
+        <Products />
       </div>
       <div className="link">
-        <Link href="/products">
-          <a>PRODUCTS PAGE</a>
+        <Link href="/">
+          <a>HOME PAGE</a>
         </Link>
       </div>
       <style jsx>{`
@@ -57,25 +50,7 @@ const Home = () => {
           width: 80%;
           margin: 0 auto;
           padding: 0.5rem;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
           border: 2px solid black;
-        }
-
-        .main > div {
-          height: 500px;
-          background-color: #fff;
-          border: 1px solid grey;
-        }
-
-        .main > div:first-child {
-          width: 34%;
-        }
-
-        .main > div:last-child {
-          width: 64%;
         }
 
         .link {
@@ -83,34 +58,16 @@ const Home = () => {
           text-align: center;
           font-weight: 600;
         }
-
-        @media (max-width: 1000px) {
-          .main {
-            flex-direction: column;
-          }
-
-          .main > div {
-            height: auto;
-          }
-
-          .main > div:first-child {
-            margin-bottom: 0.5rem;
-          }
-
-          .main > div:first-child,
-          .main > div:last-child {
-            width: 100%;
-          }
-        }
       `}</style>
     </>
   );
 };
-Home.getInitialProps = ({ reduxStore }) => {
+
+ProductsPage.getInitialProps = ({ reduxStore }) => {
   reduxStore.dispatch(getProducts());
   reduxStore.dispatch(getCategories());
 
   return {};
 };
 
-export default Home;
+export default ProductsPage;
