@@ -21,8 +21,14 @@ const Form = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(saveProduct(data));
-    setData(INITIAL_DATA);
+    if (!data.name && !data.type && !data.price && !data.description) {
+      alert('Please fill out all fields!');
+    } else if (data.price <= 0) {
+      alert('Price must be above 0');
+    } else {
+      dispatch(saveProduct(data));
+      setData(INITIAL_DATA);
+    }
   };
 
   return (
